@@ -21,23 +21,58 @@ struct CS {
 };
 
 void AddPipe(Pipe& t) {
-    cout << "Insert pipe name: ";
+    cout << "Введите название трубы: ";
     getline(cin, t.name);
-    cout << "Insert pipe length: ";
-    CheckDoubleInput(t.length);
+    cout << "Введите длину трубы: ";
+    t.length = CheckDoubleInput();
+    cout << "Введите диаметр трубы: ";
+    t.diameter = CheckIntInput();
+    t.status=true
 }
 
-void CheckDoubleInput(double length) {
+void AddCS(CS& cs) {
+    cout << "Введите название компрессорной станции: ";
+    getline(cin, cs.name);
+    cout << "Введите количество цехов: ";
+    cs.count = CheckDoubleInput();
+    cout << "Введите количество цехов в работе: ";
+    cs.inwork = CheckIntInput();
+    while (cs.inwork > cs.count) {
+        cout << "Количество работающих цехов не может превышать общее количество! Введите снова: ";
+        cs.inwork = CheckIntInput();
+    }
+    cout << "Введите класс станции: ";
+    getline(cin, cs.category);
+}
+
+double CheckDoubleInput() {
+    double value;
     while (true) {
-        cin >> length;
-        if (cin.fail() || length <= 0) {
+        cin >> value;
+        if (cin.fail() || value <= 0) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Insert positive number!" << endl;
+            cout << "Введите положительное число!" << endl;
         }
         else {
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            return length;
+            return value;
+        }
+    }
+}
+
+int CheckIntInput() {
+    int value;
+    while (true) {
+        cin >> value;
+        if (cin.fail() || value <= 0) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Введите положительное целое число!" << endl;
+        }
+        else {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            return value;
         }
     }
 }
