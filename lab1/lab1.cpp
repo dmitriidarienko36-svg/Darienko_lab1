@@ -77,12 +77,28 @@ int CheckIntInput() {
     }
 }
 
-void ShowPipe(Pipe& t) {
+void ShowPipe(const Pipe& t) {
+    if (t.name.empty()) {
+        cout << "Труба не добавлена" << endl;
+        return;
+    }
     cout << "Название: " << t.name << endl;
     cout << "Длина: " << t.length << endl;
     cout << "Диаметр: " << t.diameter << endl;
     cout << "В ремонте: " << (t.status? "Да" : "Нет") << endl;
 }
+
+void ShowCS(const CS& cs) {
+    if (cs.name.empty()) {
+        cout << "Компремморная станция не добавлена" << endl;
+        return;
+    }
+    cout << "Название: " << cs.name << endl;
+    cout << "Количество цехов: " << cs.count << endl;
+    cout << "Диаметр: " << cs.inwork << endl;
+    cout << "Класс станции: " << cs.category << endl;
+}
+
 void menu(Pipe& t, CS& cs) {
     int option;
     while (true){
@@ -137,6 +153,7 @@ void menu(Pipe& t, CS& cs) {
 int main()
 {
     std::cout << "Hello World!\n";
+    setlocale(LC_ALL, "Russian");
     Pipe pipe;
     CS cs;
     menu(pipe,cs);
