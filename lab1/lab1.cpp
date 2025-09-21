@@ -221,9 +221,9 @@ void LoadFromFile(Pipe& t, CS& cs) {
 void menu(Pipe& t, CS& cs) {
     int option;
     while (true) {
-        cout << "\nВыберите действие: \n1. Добавить трубу\n2. Добавить КС\n3. Просмотр всех объектов\n4. Редактировать трубу\n5. Редактировать КС\n6. Сохранить\n7. Загрузить\n0. Выход\n";
+        cout << "\nВыберите действие: \n1. Добавить трубу\n2. Добавить КС\n3. Просмотр всех объектов\n4. Редактировать трубу\n5. Редактировать КС\n6. Сохранить\n7. Загрузить\n9. Выход\n";
         cout << "Ваш выбор: ";
-        cin >> option;
+        option = CheckIntInput();
 
         switch (option) {
         case 1:
@@ -248,7 +248,7 @@ void menu(Pipe& t, CS& cs) {
         case 7:
             LoadFromFile(t, cs);
             break;
-        case 0:
+        case 9:
             cout << "Выход из программы..." << endl;
             return;
         default:
