@@ -53,7 +53,6 @@ struct CS {
 
 void AddPipe(Pipe& t) {
     cout << "Введите название трубы: ";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     getline(cin, t.name);
     cout << "Введите длину трубы: ";
     t.length = CheckFloatInput();
@@ -64,7 +63,6 @@ void AddPipe(Pipe& t) {
 
 void AddCS(CS& cs) {
     cout << "Введите название компрессорной станции: ";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     getline(cin, cs.name);
     cout << "Введите количество цехов: ";
     cs.count = CheckIntInput();
@@ -108,7 +106,7 @@ void EditPipeStatus(Pipe& t) {
         return;
     }
     cout << "Текущий статус ремонта: " << (t.status ? "В ремонте" : "Не в ремонте") << endl;
-    cout << "Изменить статус? (1 - да, 0 - нет): ";
+    cout << "Изменить статус? (1 - да, любая клавиша - нет): ";
     int choice;
     cin >> choice;
     if (choice == 1) {
@@ -157,6 +155,7 @@ void EditCSWorkshops(CS& cs) {
 
 void SaveToFile(const Pipe& t, const CS& cs) {
     ofstream outFile("data.txt");
+    
     if (!outFile.is_open()) {
         cout << "Ошибка открытия файла для записи!" << endl;
         outFile.close();
